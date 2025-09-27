@@ -16,26 +16,29 @@ lua for Neovim.
 - Automatically switch to an existing scratch buffer if it's already open.
 - Configure the default name for the scratch buffer.
 - The scratch buffer acts as a temporary workspace and is not backed by a file.
+- Project relative bookmark storage
 
 ## Installation
 
 To install this plugin, you can use your favorite Neovim package manager. For example:
 
-### [lazy](https://github.com/folke/lazy.nvim) (recommended)
+### [lazy](https://github.com/folke/lazy.nvim)
 
 ```lua
-{
-  "https://git.sr.ht/~swaits/scratch.nvim",
+return {
+  'Prepodobnuy/scratchim.nvim',
   lazy = true,
   keys = {
-    { "<leader>bs", "<cmd>Scratch<cr>", desc = "Scratch Buffer", mode = "n" },
-    { "<leader>bS", "<cmd>ScratchSplit<cr>", desc = "Scratch Buffer (split)", mode = "n" },
+    { '<leader>bs', '<cmd>Scratchim<cr>', desc = 'Scratch Buffer', mode = 'n' },
+    { '<leader>bS', '<cmd>ScratchimSplit<cr>', desc = 'Scratch Buffer (split)', mode = 'n' },
   },
   cmd = {
-    "Scratch",
-    "ScratchSplit",
+    'Scratchim',
+    'ScratchimSplit',
   },
-  opts = {},
+  opts = {
+    buffer_name = 'Scratchim',
+  },
 }
 ```
 
@@ -43,18 +46,11 @@ To install this plugin, you can use your favorite Neovim package manager. For ex
 
 ```lua
 {
-  "https://git.sr.ht/~swaits/scratch.nvim",
+  'Prepodobnuy/scratchim.nvim',
   config = function()
-    require("scratch").setup()
+    require('scratch').setup()
   end
 }
-```
-
-### [vim-plug](https://github.com/junegunn/vim-plug)
-
-```vim
-Plug 'https://git.sr.ht/~swaits/scratch.nvim'
-lua require("scratch").setup()
 ```
 
 ### Configuring
@@ -74,15 +70,15 @@ opts = {
 
 The plugin provides two commands:
 
-- `:Scratch` — Opens or switches to the scratch buffer in the current window.
-- `:ScratchSplit` — Opens or switches to the scratch buffer in a new split window.
+- `:Scratchim` — Opens or switches to the scratch buffer in the current window.
+- `:ScratchimSplit` — Opens or switches to the scratch buffer in a new split window.
 
 ### Lua Functions
 
 You can also use the plugin's Lua functions directly:
 
-- `require('scratch').open()` — Equivalent to `:Scratch`.
-- `require('scratch').split()` — Equivalent to `:ScratchSplit`.
+- `require('scratchim').open()` — Equivalent to `:Scratchim`.
+- `require('scratchim').split()` — Equivalent to `:ScratchSplitim`.
 
 ## License
 
