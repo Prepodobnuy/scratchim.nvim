@@ -1,5 +1,4 @@
 local config = require 'scratchim.config'
-local debounce = require 'scratchim.debounce'
 local cache = require 'scratchim.cache'
 local augroup = vim.api.nvim_create_augroup('ScratchimChange', { clear = true })
 
@@ -18,7 +17,7 @@ local function listen_changes()
     callback = function()
       local lines = table.concat(vim.api.nvim_buf_get_lines(buf, 0, -1, false), '\n')
       cache.set(lines)
-      debounce.debounce(config.get().save_timeout, cache.save)
+      cache.save()
     end,
   })
 end
@@ -72,7 +71,7 @@ local function open_new_buffer(split)
   split = split or false
 
   local cmd = split and 'new ' or 'edit '
-  vim.cmd(cmd .. config.get().buffer_name)
+  vim.cmd(cmd .. config.buffer_name)
 
   local buf = vim.api.nvim_get_current_buf()
 
@@ -93,7 +92,7 @@ end
 return function(split)
   split = split or is_buf_modified()
 
-  local buf = vim.fn.bufnr(config.get().buffer_name)
+  local buf = vim.fn.bufnr(config.buffer_name)
   if buf ~= -1 then
     open_existing_buffer(split, buf)
   else

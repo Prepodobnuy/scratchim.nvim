@@ -3,10 +3,14 @@ local cache = require 'scratchim.cache'
 local open_or_split = require 'scratchim.buffer'
 
 local M = {}
+local initialized = false
 
 function M.split() open_or_split(true) end
 function M.open() open_or_split(false) end
 function M.setup(opts)
+  if initialized then return end
+  initialized = true
+
   config.validate(opts)
   cache.load()
 

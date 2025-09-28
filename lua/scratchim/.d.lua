@@ -8,11 +8,14 @@
 ---@class ScratchOpts
 ---@field buffer_name string?
 ---@field cache_path string?
----@field save_timeout integer?
----@field do_not_save boolean?
+---@field save_delay integer?
+---@field dont_save boolean?
 ---@field default_content string?
 
 ---@class ScratchConfig
----@field get fun(): ScratchOpts
+---@field buffer_name string?
+---@field cache_path string?
+---@field save_delay integer?
+---@field dont_save boolean?
+---@field default_content string?
 ---@field validate fun(opts: ScratchOpts?)
----@field value ScratchOpts?

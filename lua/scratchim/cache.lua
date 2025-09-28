@@ -1,4 +1,5 @@
 local config = require 'scratchim.config'
+local debounce = require 'scratchim.debounce'
 
 ---@type ScratchCache
 local M = {}
@@ -8,7 +9,7 @@ M.cache = {}
 
 ---@return string
 local function read()
-  local path = config.get().cache_path
+  local path = config.cache_path
   local ok, file = pcall(io.open, path, 'r')
   if not ok or not file then return '' end
 
@@ -19,7 +20,7 @@ end
 
 ---@param data string
 local function write(data)
-  local path = config.get().cache_path
+  local path = config.cache_path
   local ok, file = pcall(io.open, path, 'w')
   if not ok or not file then return end
 
@@ -39,7 +40,10 @@ function M.load()
   M.cache = {}
 end
 
-function M.save() write(vim.fn.json_encode(M.cache)) end
+function M.save()
+  if config.dont_save then return end
+  debounce(config.save_delay, function() write(vim.fn.json_encode(M.cache)) end)
+end
 function M.set(value) M.cache[root] = value end
 function M.get() return M.cache[root] end
 

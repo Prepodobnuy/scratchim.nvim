@@ -1,8 +1,8 @@
-local M = {}
 local timer = nil
+local consts = require 'scratchim.consts'
 
-function M.debounce(delay, fn)
-  delay = delay or 1000
+return function(delay, fn)
+  delay = delay or consts.save_delay
   if timer then timer:close() end
 
   timer = vim.uv.new_timer()
@@ -17,5 +17,3 @@ function M.debounce(delay, fn)
     end)
   )
 end
-
-return M
