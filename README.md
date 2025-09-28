@@ -1,4 +1,4 @@
-# Neovim Scratch Buffer Plugin
+# [Neovim Scratch Buffer Plugin](https://github.com/swaits/scratch.nvim) Improved
 
 This plugin provides a simple way to work with scratch buffers in Neovim. It
 allows you to quickly open a scratch buffer in your current window or in a new
@@ -91,6 +91,10 @@ You can also use the plugin's Lua functions directly:
 
 - `require('scratchim').open()` — Equivalent to `:Scratchim`.
 - `require('scratchim').split()` — Equivalent to `:ScratchSplitim`.
+
+## Todo
+
+- better plugin name
 
 ## License
 
