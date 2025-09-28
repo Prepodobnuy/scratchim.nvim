@@ -60,7 +60,19 @@ The default configuration options are listed below:
 ```lua
 opts = {
   -- The name of the scratch buffer
-  buffer_name = "_SCRATCH_",
+  buffer_name = '_SCRATCH_',
+
+  -- Path to cache file
+  cache_path = '~/.config/nvim/lol.json',
+
+  -- Write debounce delay in ms (>=1)
+  save_delay = 1000,
+
+  -- Dont use cache
+  dont_save = true,
+
+  -- New scratches default content
+  default_content = 'print("hello world")'
 }
 ```
 
